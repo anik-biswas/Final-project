@@ -32,8 +32,30 @@
         </div>
       </div>
       <div class="card-body">
-      <table>
+        <table class="table table-bordered">
+          <tr>
+              <td>Name</td>
+              <td>Main Category</td>
+          </tr>
+          @foreach ($category_list as $item)
+          <tr>
+              <td>{{ $item->name }}</td>
+              <td>{{ App\Enums\MainCategory::getDescription($item->main_category_id) }}</td>
+              
+              <td>
 
+                  <a href="{{ url("/admin/categories/$item->id/edit") }}" class="btn btn-info">Edit</a>
+               
+                  <form action="{{ url("/admin/categories/$item->id") }}" method="post" style="display:inline"
+                      onSubmit="return confirm('Are you sure you want to delete?')">
+                      @csrf
+                      @method("delete")
+                      <input type="submit" class="btn btn-info" value="Delete">
+                  </form>
+
+              </td>
+          </tr>
+          @endforeach
       </table>
       </div>
       <!-- /.card-body -->

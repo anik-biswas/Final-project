@@ -17,7 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.categories.index');
+        //$data["category_list"] = $this->categoryRepo->GetCategoryListWithProducts();
+        $data["category_list"] = Category::get();
+        return view('admin.categories.index',$data);
     }
 
     /**
@@ -66,7 +68,14 @@ class CategoryController extends Controller
      */
     public function edit($id)
     { 
-        //
+        $category =Category::find($id);
+        if (!$category) {
+            return redirect('/admin/categories');
+        }
+        $data["category"] = $category;
+
+        $data["main_category"] = MainCategory::asSelectArray();
+        return view('admin.categories.edit', $data);
     }
 
     /**
@@ -76,9 +85,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $category= Category::find($id);
+        if(!$category){
+            return redirect('admin/categories');
+        }
+        $category->name = $request->name;
+        $category->save();
+        flash('Successfully Updated')->success();
+        return redirect('admin/categories');
     }
 
     /**
@@ -89,6 +105,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category= Category::find($id);
+        if(!$category){
+            return redirect('admin/categories');
+        }
+        $category->delete();
+        flash('Successfully Deleted')->success();
+        return redirect("admin/categories");
     }
 }
