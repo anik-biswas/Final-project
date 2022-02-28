@@ -2,7 +2,7 @@
 namespace App\Interfaces;
 interface IBaseRepository
 {
-    public function get();
-    public function find($id);
-    public function delete($id);
+    public function myGet();
+    public function myFind($id);
+    public function myDelete($id);
 }

@@ -4,12 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\MainCategory;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\categoryRequest;
+use App\Http\Requests\CategoryRequest;
+use App\Interfaces\ICategoryRepository;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    protected $categoryRepo;
+
+    public function __construct(ICategoryRepository $categoryRepo)
+    {
+        $this->categoryRepo = $categoryRepo;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +25,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //$data["category_list"] = $this->categoryRepo->GetCategoryListWithProducts();
-        $data["category_list"] = Category::get();
-        return view('admin.categories.index',$data);
+    
+        $data["category_list"] = $this->categoryRepo->myGet();
+        //$data["category_list"] = $this->categoryRepo->myGet();
+        
+        return view('admin.categories.index', $data);
     }
 
     /**
@@ -29,8 +39,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $data["main_category"]=MainCategory::asSelectArray();
-        return view('admin.categories.create',$data);
+        $data["main_category"] = MainCategory::asSelectArray();
+        return view('admin.categories.create', $data);
     }
 
     /**
@@ -39,13 +49,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(categoryRequest $request)
+    public function store(CategoryRequest $request)
     {
-        $category= new Category();
-        $category->name = $request->name;
-        $category->main_category_id = $request->main_category_id;
-        $category->save();
-        flash('Successfully Created')->success();
+        $this->categoryRepo->CreateCategory($request);
         return redirect('/admin/categories');
     }
 
@@ -67,8 +73,8 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    { 
-        $category =Category::find($id);
+    {
+        $category = $this->categoryRepo->myFind($id);
         if (!$category) {
             return redirect('/admin/categories');
         }
@@ -87,14 +93,8 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        $category= Category::find($id);
-        if(!$category){
-            return redirect('admin/categories');
-        }
-        $category->name = $request->name;
-        $category->save();
-        flash('Successfully Updated')->success();
-        return redirect('admin/categories');
+        $status = $this->categoryRepo->UpdateCategory($request, $id);
+        return redirect('/admin/categories');
     }
 
     /**
@@ -105,12 +105,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category= Category::find($id);
-        if(!$category){
-            return redirect('admin/categories');
-        }
-        $category->delete();
-        flash('Successfully Deleted')->success();
-        return redirect("admin/categories");
+
+        $this->categoryRepo->myDelete($id);
+        return redirect('/admin/categories');
     }
 }
