@@ -203,7 +203,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
-        @yield('name') 
+        @include('flash::message')
+        @yield('page_title') 
       </div><!-- /.container-fluid -->
     </section>
 
