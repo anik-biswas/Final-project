@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\InstructorController;
 use App\Http\Middleware\onlyadmin;
 use Illuminate\Support\Facades\Route;
 
@@ -29,8 +30,8 @@ Route::get('/', function () {
 Route::prefix('admin')->middleware(['auth',onlyAdmin::class])->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index']);
     Route::resource('/categories',CategoryController::class);
-    //Route::resource('/instructor',InstructorController::class);
+    Route::resource('/instructors',InstructorController::class);
 
-    Route::get('/courses',[DashboardController::class,'index']);
+   // Route::get('/courses',[DashboardController::class,'index']);
 });
 require __DIR__.'/auth.php';

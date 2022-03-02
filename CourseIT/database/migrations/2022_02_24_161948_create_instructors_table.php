@@ -20,7 +20,7 @@ return new class extends Migration
             $table-> string("phone");
             $table-> text("skill");
             $table-> text("description");
-            $table->text("image")->nullable();
+            $table-> string("image")->nullable();
             $table->timestamps();
         });
     }

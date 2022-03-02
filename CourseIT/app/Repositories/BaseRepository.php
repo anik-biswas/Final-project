@@ -36,8 +36,9 @@ class BaseRepository implements IBaseRepository
         if (!$data) {
             flash('No Item Found')->error();
         } else {
-            flash('Successfully Deleted')->success();
+            
             $data->delete();
+            flash('Successfully Deleted')->success();
         }
     }
 }
