@@ -11,7 +11,19 @@ use BenSampo\Enum\Enum;
  */
 final class CourseType extends Enum
 {
-    const OptionOne =   0;
-    const OptionTwo =   1;
-    const OptionThree = 2;
+    const Short =   0;
+    const Medium =   1;
+    const Long = 2;
+    public static function getDescription($value): string
+    {
+        if ($value=== self::Short){
+            return "Short";
+        } elseif($value===self:: Medium){
+            return "Medium";
+        } else
+        {
+            return "Long";
+        }
+       return parent::getDescription($value);
+    }
 }

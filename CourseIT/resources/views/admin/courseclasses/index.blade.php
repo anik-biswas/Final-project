@@ -36,26 +36,17 @@
           <tr>
               <td>Name</td>
               <td>Email</td>
-              <td>Skill</td>
-              <td>Phone</td>
-              <td>Description</td>
-              <td>Image</td>
-              <td>Action</td>
           </tr>
-           @foreach ($instructor_list as $item)
+         {{--  @foreach ($category_list as $item)
           <tr>
               <td>{{ $item->name }}</td>
-              <td>{{ $item->email }}</td>
-              <td>{{ $item->skill }}</td>
-              <td>{{ $item->phone }}</td>
-              <td>{{ $item->description }}</td>
-            <td> <img src="{{ asset("storage/$item->image") }}" alt="no" class="" height=50px width=50px ></td> 
-             
+              <td>{{ App\Enums\MainCategory::getDescription($item->main_category_id) }}</td>
+              
               <td>
 
                   <a href="{{ url("/admin/categories/$item->id/edit") }}" class="btn btn-info">Edit</a>
                
-                  <form action="{{ url("/admin/instructors/$item->id") }}" method="post" style="display:inline"
+                  <form action="{{ url("/admin/categories/$item->id") }}" method="post" style="display:inline"
                       onSubmit="return confirm('Are you sure you want to delete?')">
                       @csrf
                       @method("delete")
@@ -64,12 +55,12 @@
 
               </td>
           </tr>
-          @endforeach 
+          @endforeach --}}
       </table>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">
-    
+        Footer
       </div>
       <!-- /.card-footer-->
     </div>

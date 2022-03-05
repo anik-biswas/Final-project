@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CourseClassController;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InstructorController;
 use App\Http\Middleware\onlyadmin;
@@ -31,6 +33,8 @@ Route::prefix('admin')->middleware(['auth',onlyAdmin::class])->group(function ()
     Route::get('/dashboard',[DashboardController::class,'index']);
     Route::resource('/categories',CategoryController::class);
     Route::resource('/instructors',InstructorController::class);
+    Route::resource('/courses',CourseController::class);
+    Route::resource('/courseclasses',CourseClassController::class);
 
    // Route::get('/courses',[DashboardController::class,'index']);
 });

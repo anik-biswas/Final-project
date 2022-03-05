@@ -3,20 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\instructorRequest;
-use App\Interfaces\IInstructorRepository;
-use App\Models\Instructor;
+use App\Interfaces\ICourseClassRepository;
 use Illuminate\Http\Request;
 
-class InstructorController extends Controller
+class CourseClassController extends Controller
 {
-    protected $instructorRepo;
+    protected $courseclassRepo;
 
-    public function __construct(IInstructorRepository $instructorRepo)
+    public function __construct(ICourseClassRepository $courseclassRepo)
     {
-        $this->instructorRepo = $instructorRepo;
+        $this->courseclassRepo = $courseclassRepo;
     }
 
+    
     /**
      * Display a listing of the resource.
      *
@@ -24,8 +23,7 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        $data["instructor_list"] = $this->instructorRepo->myGet();
-        return view('admin.instructors.index',$data);
+        return view('admin.courseclasses.index');
     }
 
     /**
@@ -35,8 +33,7 @@ class InstructorController extends Controller
      */
     public function create()
     {
-       
-        return view('admin.instructors.create');
+        //
     }
 
     /**
@@ -45,10 +42,9 @@ class InstructorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(instructorRequest $request)
+    public function store(Request $request)
     {
-        $this->instructorRepo->CreateInstructor($request);
-        return redirect('/admin/instructors');
+        //
     }
 
     /**
@@ -93,7 +89,6 @@ class InstructorController extends Controller
      */
     public function destroy($id)
     {
-        $this->instructorRepo->DeleteInstructor($id);
-        return redirect('/admin/instructors');
+        //
     }
 }
