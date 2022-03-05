@@ -40,9 +40,28 @@ class InstructorRepository extends BaseRepository implements IInstructorReposito
 
     public function UpdateInstructor($request, $id)
     {
-      
+        $instructor = $this->myFind($id);
+        if(!$instructor){
+            return false;
+        }
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('instructor_images', 'public');
+        } else {
+            $path = null;
+        }
+
+        $instructor->name = $request->name;
+        $instructor->email = $request->email;
+        $instructor->phone = $request->phone;
+        $instructor->skill = $request->skill;
+        $instructor->description = $request->description;
+        $instructor->image = $path;
+        $instructor->save();
+        flash('Successfully Updated')->success();
+        return true;
     }
     public function DeleteInstructor($id)
+
     {
         try {
             $instructor = $this->myFind($id);
@@ -53,6 +72,6 @@ class InstructorRepository extends BaseRepository implements IInstructorReposito
             flash('Something Went Wrong')->error();
         }
     }
-
-
-}
+    
+    
+} 

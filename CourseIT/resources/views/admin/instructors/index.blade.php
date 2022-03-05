@@ -53,7 +53,7 @@
              
               <td>
 
-                  <a href="{{ url("/admin/categories/$item->id/edit") }}" class="btn btn-info">Edit</a>
+                  <a href="{{ url("/admin/instructors/$item->id/edit") }}" class="btn btn-info">Edit</a>
                
                   <form action="{{ url("/admin/instructors/$item->id") }}" method="post" style="display:inline"
                       onSubmit="return confirm('Are you sure you want to delete?')">

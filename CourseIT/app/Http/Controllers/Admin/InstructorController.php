@@ -70,7 +70,12 @@ class InstructorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $instructor = $this->instructorRepo->myFind($id);
+        if (!$instructor) {
+            return redirect('/admin/instructors');
+        }
+        $data["instructor"] = $instructor;
+        return view('admin.instructors.edit', $data);
     }
 
     /**
@@ -80,9 +85,10 @@ class InstructorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(instructorRequest $request, $id)
     {
-        //
+        $status = $this->instructorRepo->UpdateInstructor($request,$id);
+        return redirect('/admin/instructors');
     }
 
     /**
