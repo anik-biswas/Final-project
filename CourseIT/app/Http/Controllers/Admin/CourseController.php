@@ -1,18 +1,26 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Enums\CourseType;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseRequest;
+use App\Interfaces\ICategoryRepository;
+use App\Interfaces\IInstructorRepository;
 use App\Interfaces\ICourseRepository;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
     protected $courseRepo;
+    protected $categoryRepo;
+    protected $instructorRepo;
 
-    public function __construct(ICourseRepository $courseRepo)
+    public function __construct(ICourseRepository $courseRepo, ICategoryRepository $categoryRepo ,IInstructorRepository $instructorRepo )
     {
         $this->courseRepo = $courseRepo;
+        $this->categoryRepo = $categoryRepo;
+        $this->instructorRepo = $instructorRepo;
     }
 
 
@@ -23,7 +31,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('admin.courses.index');
+       
+        $data["course_list"] = $this->courseRepo->myGet();
+        return view('admin.courses.index',$data);
     }
 
     /**
@@ -32,8 +42,13 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
     {
-        //
+        $data["categories"]= $this->categoryRepo->myGet();
+        $data["instructors"]= $this->instructorRepo->myGet();
+        $data["course_type"] = CourseType::asSelectArray();
+
+        return view('admin.courses.create',$data);
     }
 
     /**
@@ -42,9 +57,10 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
-        //
+        $this->courseRepo->CreateCourse($request);
+        return redirect('/admin/courses');
     }
 
     /**
