@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Category extends Model
 {
     use HasFactory;
-    public function products()
+    public function courses()
     {
-        return $this->hasMany(Product::class , "category_id", "id");
+        return $this->hasMany(Course::class , "category_id", "id");
     }
 }

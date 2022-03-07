@@ -4,5 +4,5 @@ interface ICategoryRepository extends IBaseRepository
 {
     public function CreateCategory($request);
     public function UpdateCategory($request,$id);
-    
+    public function DeleteCategory($id);
 }

@@ -41,8 +41,8 @@
                     <input type="text" name="phone" value="{{$instructor->phone}}" class="form-control"  placeholder="Enter Phone Number">
                   </div>
                   <div class="form-group">
-                    <label for="Category_name">Skill</label>
-                    <input type="text" name="skill" value="{{$instructor->skill}}" class="form-control"  placeholder="Skill">
+                    <label for="Category_name">Skill</label> 
+                    <input type="text" name="skill" value="{{$instructor->skill}}"class="form-control"  placeholder="Skill">
                   </div>
                   
                   <div class="form-group">
@@ -51,7 +51,7 @@
                   </div>
                   <div class="form-group">
                     <label for="Category_name">Featured Image</label>
-                    <input type="file" name="image"><img src="{{ asset("storage/$instructor->image") }}" alt="no" class="" height=50px width=50px >
+                    <input type="file" name="image" ><img src="{{ asset("storage/$instructor->image") }}" alt="" class="" height=50px width=50px >
                   </div>
                 
                 <!-- /.card-body -->

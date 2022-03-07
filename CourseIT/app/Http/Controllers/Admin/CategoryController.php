@@ -105,8 +105,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-
-        $this->categoryRepo->myDelete($id);
+        $this->categoryRepo->DeleteCategory($id);
         return redirect('/admin/categories');
     }
 }

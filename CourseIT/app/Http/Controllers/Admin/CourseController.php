@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Enums\MainCategory;
 use App\Enums\CourseType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
@@ -82,7 +83,19 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = $this->courseRepo->myFind($id);
+        if (!$course) {
+            return redirect('/admin/courses');
+        }
+
+        $data["course"] = $course;
+        
+        $data["categories"]= $this->categoryRepo->myGet();
+        $data["instructors"]= $this->instructorRepo->myGet();
+        $data["course_type"] = CourseType::asSelectArray();
+
+        
+        return view('admin.courses.edit', $data);
     }
 
     /**
@@ -92,9 +105,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(courseRequest $request, $id)
     {
-        //
+        $status = $this->courseRepo->UpdateCourse($request,$id);
+        return redirect('/admin/courses');
     }
 
     /**
@@ -105,6 +119,7 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->courseRepo->DeleteCourse($id);
+        return redirect('/admin/courses');
     }
 }

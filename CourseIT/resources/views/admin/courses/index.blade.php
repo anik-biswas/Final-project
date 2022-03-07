@@ -59,14 +59,14 @@
            
             <td>
 
-                <a href="{{ url("/admin/courses/$item->id/edit") }}" class="btn btn-info">Edit</a>
+               <span> <a href="{{ url("/admin/courses/$item->id/edit") }}" class="btn btn-info">Edit</a>
              
                 <form action="{{ url("/admin/courses/$item->id") }}" method="post" style="display:inline"
                     onSubmit="return confirm('Are you sure you want to delete?')">
                     @csrf
                     @method("delete")
                     <input type="submit" class="btn btn-info" value="Delete">
-                </form>
+                </form></span>
 
             </td>
         </tr>

@@ -35,6 +35,19 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository
         flash('Successfully Updated')->success();
         return true;
     }
+    public function DeleteCategory($id)
+  
+
+    {
+        try {
+            $category = $this->myFind($id);
+            $category->courses()->delete();
+            $category->delete();
+            flash('Successfully Deleted with Courses')->success();
+        } catch (\Throwable $th) {
+            flash('Something Went Wrong'. $th->getMessage())->error();
+        }
+    }
 
     
 }

@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Interfaces\IInstructorRepository;
 use App\Models\Instructor;
+use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Stmt\TryCatch;
 
 class InstructorRepository extends BaseRepository implements IInstructorRepository
 {
@@ -44,34 +46,43 @@ class InstructorRepository extends BaseRepository implements IInstructorReposito
         if(!$instructor){
             return false;
         }
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('instructor_images', 'public');
-        } else {
-            $path = null;
-        }
+        else{
 
-        $instructor->name = $request->name;
-        $instructor->email = $request->email;
-        $instructor->phone = $request->phone;
-        $instructor->skill = $request->skill;
-        $instructor->description = $request->description;
-        $instructor->image = $path;
-        $instructor->save();
-        flash('Successfully Updated')->success();
-        return true;
+        try {
+            if ($request->hasFile('image')) {
+                $path = $request->file('image')->store('instructor_images', 'public');
+                $instructor->image = $path;
+            } else {
+                unset($request['image']);
+            }
+    
+            $instructor->name = $request->name;
+            $instructor->email = $request->email;
+            $instructor->phone = $request->phone;
+            $instructor->skill = $request->skill;
+            $instructor->description = $request->description;
+           
+            $instructor->save();
+            flash('Successfully Updated')->success();
+            return true;
+        } catch (\Throwable $th) {
+            flash('Something went wrong ' . $th->getMessage())->error();
+        }
+    }
     }
     public function DeleteInstructor($id)
 
     {
         try {
             $instructor = $this->myFind($id);
-           
+            Storage::disk('public')->delete($instructor->image);
+            $instructor->courses()->delete();
             $instructor->delete();
-            flash('Successfully Deleted')->success();
+            flash('Successfully Deleted with Courses')->success();
         } catch (\Throwable $th) {
-            flash('Something Went Wrong')->error();
+            flash('Something Went Wrong'. $th->getMessage())->error();
         }
     }
-    
+     
     
 } 
