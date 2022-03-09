@@ -77,8 +77,7 @@ class InstructorRepository extends BaseRepository implements IInstructorReposito
     {
         try {
             $instructor = $this->myFind($id);
-            //$instructor->courses()->delete();
-            //$instructor->courseclasses()->delete();
+            
             $instructor->courses()->delete();
             Storage::disk('public')->delete($instructor->image);
             $instructor->delete();

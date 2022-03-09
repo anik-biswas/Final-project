@@ -12,10 +12,6 @@ class Instructor extends Model
     {
         return $this->hasMany(Course::class , "instructor_id", "id");
     }
-    public function courseclasses()
-    {
-        return $this->hasMany(CourseClass::class,"course_id", "id");
-    }
     
     
 }
