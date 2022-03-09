@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Interfaces\IInstructorRepository;
+use App\Models\Course;
+use App\Models\CourseClass;
 use App\Models\Instructor;
 use Illuminate\Support\Facades\Storage;
 use PhpParser\Node\Stmt\TryCatch;
@@ -75,13 +77,16 @@ class InstructorRepository extends BaseRepository implements IInstructorReposito
     {
         try {
             $instructor = $this->myFind($id);
-            Storage::disk('public')->delete($instructor->image);
+            //$instructor->courses()->delete();
+            //$instructor->courseclasses()->delete();
             $instructor->courses()->delete();
+            Storage::disk('public')->delete($instructor->image);
             $instructor->delete();
             flash('Successfully Deleted with Courses')->success();
         } catch (\Throwable $th) {
             flash('Something Went Wrong'. $th->getMessage())->error();
-        }
+        } 
+         
     }
      
     

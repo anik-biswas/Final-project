@@ -22,8 +22,8 @@ return new class extends Migration
             $table-> double('discount_price')->default(0);
             $table-> text("description");
             $table-> string("course_image")->nullable();
-            $table->foreignId("category_id")->constrained('categories');
-            $table->foreignId("instructor_id")->constrained('instructors');
+            $table->foreignId("category_id")->constrained('categories')->onDelete('cascade');
+            $table->foreignId("instructor_id")->constrained('instructors')->onDelete('cascade');
             $table->timestamps();
         });
     }

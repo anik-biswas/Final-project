@@ -3,16 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseClassRequest;
+use App\Http\Requests\CourseRequest;
 use App\Interfaces\ICourseClassRepository;
+use App\Interfaces\ICourseRepository;
+
 use Illuminate\Http\Request;
 
 class CourseClassController extends Controller
 {
-    protected $courseclassRepo;
-
-    public function __construct(ICourseClassRepository $courseclassRepo)
+    protected $course_classRepo;
+    protected $courseRepo;
+    public function __construct(ICourseClassRepository $course_classRepo,ICourseRepository $courseRepo)
     {
-        $this->courseclassRepo = $courseclassRepo;
+        $this->course_classRepo = $course_classRepo;
+        $this->courseRepo = $courseRepo;
     }
 
     
@@ -23,7 +28,9 @@ class CourseClassController extends Controller
      */
     public function index()
     {
-        return view('admin.courseclasses.index');
+      
+        $data["course_class_list"]=$this->course_classRepo->myGet();
+        return view('admin.courseclasses.index',$data);
     }
 
     /**
@@ -33,7 +40,8 @@ class CourseClassController extends Controller
      */
     public function create()
     {
-        //
+        $data["course_list"] = $this->courseRepo->myGet();
+        return view('admin.courseclasses.create',$data);
     }
 
     /**
@@ -42,9 +50,10 @@ class CourseClassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseClassRequest $request)
     {
-        //
+        $this->course_classRepo->CreateCourseClass($request);
+        return redirect('/admin/courseclasses');
     }
 
     /**
@@ -66,7 +75,17 @@ class CourseClassController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course_class_list = $this->course_classRepo->myFind($id);
+        if (!$course_class_list) {
+            return redirect('/admin/courseclasses');
+        }
+
+        $data["course_class_list"] = $course_class_list;
+        
+        $data["course_list"] = $this->courseRepo->myGet();
+
+        
+        return view('admin.courseclasses.edit', $data);
     }
 
     /**
@@ -76,9 +95,10 @@ class CourseClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CourseClassRequest $request, $id)
     {
-        //
+        $status = $this->course_classRepo->UpdateCourseClass($request,$id);
+        return redirect('/admin/courseclasses');
     }
 
     /**
@@ -89,6 +109,7 @@ class CourseClassController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->course_classRepo->DeleteCourseClass($id);
+        return redirect('/admin/courseclasses');
     }
 }

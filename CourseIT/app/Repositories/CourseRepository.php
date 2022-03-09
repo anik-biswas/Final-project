@@ -81,7 +81,7 @@ class CourseRepository extends BaseRepository implements ICourseRepository
         try {
             $course = $this->myFind($id);
             Storage::disk('public')->delete($course->course_image);
-            //$course->coursevideos()->delete();
+            $course->courseclasses()->delete();
             $course->delete();
             flash('Successfully Deleted with Course videos')->success();
         } catch (\Throwable $th) {

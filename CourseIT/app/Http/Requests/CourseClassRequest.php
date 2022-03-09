@@ -24,7 +24,11 @@ class CourseClassRequest extends FormRequest
     public function rules()
     {
         return [
-            
+            'name' => 'required|max:255',
+            'course_id'=> 'required',
+            'class_no'=> 'required|numeric',
+            'course_video' => 'nullable|mimes:mp4,ppx,pdf,ogv,jpg,webm',
+
         ];
     }
 }
