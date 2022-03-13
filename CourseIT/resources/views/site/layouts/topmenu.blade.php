@@ -74,11 +74,37 @@
                             </ul>
                         </li>
                         <li><a href="contact-us.html">Countact Us</a></li> --}}
-                        <li> <a href="{{ url("/login")}}"class="navigation pull-right" >Login</a></li>
-                        <li><a href="{{ url("/register")}}"class="navigation pull-right">Signup</a></li>
+                        @if (!Auth::user())
+                        
+                        <li> <a href="{{ url("/login")}}" >Login</a></li>
+                        <li><a href="{{ url("/register")}}">Signup</a></li>
+                        
+                            
+                        @else
+                        
+                        <li>
+                            @auth
+                            <a>{{Auth::user()->name}}</a>
+                            @endauth
+                        </li>
+                        
+                            <li>
+                                @auth
+                                
+                                <form action="{{url('/logout')}}" method="POST">
+                                    @csrf
+                                  <a  ><input type="submit" class=" btn-danger" value="Logout"></a>
+                                </form>
+                                @endauth    
+                                
+                            </li>
+                            
+                        @endif
+                        
+                        
                     </ul>
                 </div>
-                <div class="navigation pull-right">
+                {{-- <div class="navigation pull-right">
                     <ul>
                        
                 
@@ -87,7 +113,7 @@
                             </div>
                             <div class="iq_input pull-right">
                                 <a href="home-1.html#login-form" class="iq_link_1 ">Signup</a> 
-                            </div> --}}
+                            </div> 
                       
                         <li><a>
                             
@@ -102,7 +128,7 @@
                         @endauth    
                         </a></li> 
                     </ul>
-                </div>
+                </div> --}}
                 <!--DL Menu Start-->
                 {{-- <div id="mg-responsive-navigation" class="dl-menuwrapper">
                     <button class="dl-trigger">Open Menu</button>
