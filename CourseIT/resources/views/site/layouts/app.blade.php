@@ -33,12 +33,10 @@
     </head>
     <body>
         <!--iqoniq Wrapper Start-->  
-        <div class="iq_wrapper">
-            <!--Header Wrap Start-->
-            @include('site.layouts.topmenu')
-            <!--Header Wrap End-->
-            <!--Banner Wrap Start-->
-         @yield('content')
+        @include('site.layouts.topmenu')
+        <!--Header Wrap End-->
+        <!--Banner Wrap Start-->
+     @yield('content')
             <!--Contact Info Wrap End-->
             <!--Footer Wrap Start-->
             <footer class="iq_footer_bg">

@@ -33,6 +33,18 @@
               <p>Courses</p>
           </a>
       </li>
+      <li class="nav-item">
+        <a href="{{ url('/admin/instructors') }}" class="nav-link {{ request()->is('*/instructors*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-desktop"></i>
+            <p>Instructor</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/courseclasses') }}" class="nav-link {{ request()->is('*/courseclasses*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-desktop"></i>
+            <p>Course Class</p>
+        </a>
+    </li>
 
   </ul>
 </nav>

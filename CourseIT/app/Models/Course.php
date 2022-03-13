@@ -20,4 +20,8 @@ class Course extends Model
     {
         return $this->hasMany(CourseClass::class , "course_id", "id");
     }
+    public function getPriceAfterDiscountAttribute()
+    {
+        return $this->price - $this->discount_price;
+    }
 }

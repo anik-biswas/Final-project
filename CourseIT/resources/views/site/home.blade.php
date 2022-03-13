@@ -196,19 +196,21 @@
             <!--Tab Menu Wrap Start-->
             <div class="iq_tab_menu">
                 <ul id="tabs" data-tabs="tabs">
-                    <li class="active"><a data-toggle="tab" href="#featured">Featured</a></li>
-                    <li><a data-toggle="tab" href="#popular">popular</a></li>
+                    <li class="active"><a data-toggle="tab" href="#latest">Latest</a></li>
+                    <li><a data-toggle="tab" href="#Special">Special</a></li>
                 </ul>
             </div>
             <!--Tab Menu Wrap End-->
             <!--Tab Menu Detail Wrap Start-->
             <div id="my-tab-content" class="tab-content">
-                <div class="row tab-pane active" id="featured">
+                <div class="row tab-pane active" id="latest">
                     <!--Courses List Start-->
+                    @foreach ($latest_courses as $c)
+                    
                     <div class="col-md-4 col-sm-6">
                         <div class="iq_course_list">
                             <figure>
-                                <img src="/site/extra-images/featured-course-1.jpg" alt="Image Here"> 	
+                                <img src="{{ asset("storage/$c->course_image") }}" alt="Image Here" height="220px"> 	
                             </figure>
                             <div class="iq_course_list_des">
                                 <div class="iq_course_icon">
@@ -216,89 +218,42 @@
                                         <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span>
                                     </span>
                                 </div>
-                                <h5><a href="#">Computer & IT Courses</a></h5>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum </p>
-                                <ul>
+                                <h5><a href="#">{{$c->name}}</a></h5>
+                                <p>{{$c->description}} </p>
+                                  <ul>
                                     <li>
                                         <!--RATING AREA START-->
-                                        <div class="rating_down">
-                                            <div class="rating_up" style="width:100%;"></div>
+                                        <div class="info-product-price">
+                                            <span  class="item_price ">${{ $c->price_after_discount }}</span>
+                                            @if ($c->discount_price > 0)
+                                               <del  text-align="right">${{ $c->price }}</del>
+                                            @endif
                                         </div>
                                         <!--RATING AREA End-->  
                                     </li>
-                                    <li>101 Reviews</li>
-                                    <li><i class="fa fa-user"></i>3.1 k</li>
-                                </ul>
+                                    <div class="widget coures_instractor_area">
+                                        <div class="instractor_heading">
+                                        <h6><a href="{{ url("/coursedetails/$c->id") }}" class="single-item hvr-outline-out button2">View Course</a></h6>
+                                        </div>
+                                       </div>
+                                 </ul>
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                    
                     <!--Courses List End-->
                     <!--Courses List Start-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="iq_course_list">
-                            <figure>
-                                <img src="/site/extra-images/featured-course-02.jpg" alt="Image Here">
-                            </figure>
-                            <div class="iq_course_list_des">
-                                <div class="iq_course_icon">
-                                    <span class="icon-lecture">
-                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span><span class="path23"></span><span class="path24"></span><span class="path25"></span><span class="path26"></span><span class="path27"></span><span class="path28"></span><span class="path29"></span><span class="path30"></span><span class="path31"></span><span class="path32"></span><span class="path33"></span><span class="path34"></span><span class="path35"></span><span class="path36"></span><span class="path37"></span><span class="path38"></span>
-                                    </span>
-                                </div>
-                                <h5><a href="#">Business & Finance</a></h5>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum </p>
-                                <ul>
-                                    <li>
-                                        <!--RATING AREA START-->
-                                        <div class="rating_down">
-                                            <div class="rating_up" style="width:100%;"></div>
-                                        </div>
-                                        <!--RATING AREA End-->  
-                                    </li>
-                                    
-                                    <li>101 Reviews</li>
-                                    <li><i class="fa fa-user"></i>3.1 k</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Courses List End-->
-                    <!--Courses List Start-->
-                    <div class="col-md-4 hidden-sm">
-                        <div class="iq_course_list">
-                            <figure>
-                                <img src="/site/extra-images/featured-course-03.jpg" alt="Image Here">
-                            </figure>
-                            <div class="iq_course_list_des">
-                                <div class="iq_course_icon">
-                                    <span class="icon-molecule">
-                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span>
-                                    </span>
-                                </div>
-                                <h5><a href="#">Social Courses</a></h5>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum </p>
-                                <ul>
-                                    <li>
-                                        <!--RATING AREA START-->
-                                        <div class="rating_down">
-                                            <div class="rating_up" style="width:100%;"></div>
-                                        </div>
-                                        <!--RATING AREA End-->  
-                                    </li>
-                                    <li>101 Reviews</li>
-                                    <li><i class="fa fa-user"></i>3.1 k</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                
                     <!--Courses List End-->
                 </div>
-                <div class="row tab-pane" id="popular">
-                    <!--Courses List Start-->
+                
+                <div class="row tab-pane" id="Special">
+                    @foreach ($special_courses as $c)
                     <div class="col-md-4 col-sm-6">
                         <div class="iq_course_list">
                             <figure>
-                                <img src="/site/extra-images/featured-course-01.jpg" alt="Image Here">    
+                                <img src="{{ asset("storage/$c->course_image") }}" alt="Image Here" height="220px"> 	   
                             </figure>
                             <div class="iq_course_list_des">
                                 <div class="iq_course_icon">
@@ -306,81 +261,34 @@
                                         <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span><span class="path23"></span><span class="path24"></span><span class="path25"></span><span class="path26"></span><span class="path27"></span><span class="path28"></span><span class="path29"></span><span class="path30"></span><span class="path31"></span><span class="path32"></span><span class="path33"></span><span class="path34"></span><span class="path35"></span><span class="path36"></span><span class="path37"></span><span class="path38"></span>
                                     </span>
                                 </div>
-                                <h5><a href="#">Neuroscience Courses</a></h5>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum </p>
-                                <ul>
+                                <h5><a href="#">{{$c->name}}</a></h5>
+                                <p>{{$c->description}}</p>
+                                 <ul>
                                     <li>
                                         <!--RATING AREA START-->
-                                        <div class="rating_down">
-                                            <div class="rating_up" style="width:100%;"></div>
+                                        <div class="info-product-price">
+                                            <span  class="item_price " >${{ $c->price_after_discount }}</span>
+                                            @if ($c->discount_price > 0)
+                                               <del  text-align="right">${{ $c->price }}</del>
+                                            @endif
                                         </div>
                                         <!--RATING AREA End-->  
                                     </li>
-                                    <li>101 Reviews</li>
-                                    <li><i class="fa fa-user"></i>3.1 k</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Courses List End-->
-                    <!--Courses List Start-->
-                    <div class="col-md-4 col-sm-6">
-                        <div class="iq_course_list">
-                            <figure>
-                                <img src="/site/extra-images/featured-course-02.jpg" alt="Image Here">
-                            </figure>
-                            <div class="iq_course_list_des">
-                                <div class="iq_course_icon">
-                                    <span class="icon-debate">
-                                    <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span>
-                                </span>
-                                </div>
-                                <h5><a href="#">Politics Courses</a></h5>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum </p>
-                                <ul>
-                                    <li>
-                                        <!--RATING AREA START-->
-                                        <div class="rating_down">
-                                            <div class="rating_up" style="width:100%;"></div>
+                                    <div class="widget coures_instractor_area">
+                                        <div class="instractor_heading">
+                                             <h6><a href="{{ url("/coursedetails/>$c->id")}}" class=" single-item hvr-outline-out button2">View Course</a></h6> 
                                         </div>
-                                        <!--RATING AREA End-->  
-                                    </li>
-                                    
-                                    <li>101 Reviews</li>
-                                    <li><i class="fa fa-user"></i>3.1 k</li>
-                                </ul>
+                                       </div>
+                                 </ul>
+                                  
+                                 
+                               
                             </div>
                         </div>
-                    </div>
-                    <!--Courses List End-->
-                    <!--Courses List Start-->
-                    <div class="col-md-4 hidden-sm">
-                        <div class="iq_course_list">
-                            <figure>
-                                <img src="/site/extra-images/featured-course-03.jpg" alt="Image Here">
-                            </figure>
-                            <div class="iq_course_list_des">
-                                <div class="iq_course_icon">
-                                    <span class="icon-medical-3">
-                                        <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span><span class="path20"></span><span class="path21"></span><span class="path22"></span><span class="path23"></span><span class="path24"></span>
-                                    </span>
-                                </div>
-                                <h5><a href="#">Zoology Courses</a></h5>
-                                <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum </p>
-                                <ul>
-                                    <li>
-                                        <!--RATING AREA START-->
-                                        <div class="rating_down">
-                                            <div class="rating_up" style="width:100%;"></div>
-                                        </div>
-                                        <!--RATING AREA End-->  
-                                    </li>
-                                    <li>101 Reviews</li>
-                                    <li><i class="fa fa-user"></i>3.1 k</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    </div>    
+                    @endforeach
+                  
+                   
                     <!--Courses List End-->
                 </div>
             </div>

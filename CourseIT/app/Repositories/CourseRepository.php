@@ -10,9 +10,11 @@ use App\Models\Course;
 class CourseRepository extends BaseRepository implements ICourseRepository
 {
     protected $model;
+    protected $courseModel;
 
     public function __construct(Course $model)
     {
+        $this->courseModel=$model;
         parent::__construct($model);
     }
 
@@ -89,4 +91,22 @@ class CourseRepository extends BaseRepository implements ICourseRepository
         }
         
     }
+
+    public function GetLatestCourseList()
+    {
+        $data= $this->courseModel->take(6)->orderBy('created_at','desc')->get();
+        return $data;
+    }
+    public function GetSpecialCourseList()
+    {
+        $data= $this->courseModel->where('discount_price','!=',0)->take(3)->orderBy('discount_price','desc')->get();
+        return $data;
+    }
+     public function FindCourse($id)
+     {
+        $course = $this->myFind($id);
+        return $course;
+
+     }
+
 }

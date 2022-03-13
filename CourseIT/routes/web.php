@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\CourseClassController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InstructorController;
+use App\Http\Controllers\Site\CartController;
+use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\ClassDetailController;
 use App\Http\Middleware\onlyadmin;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +22,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('site.home');
-});
-
+Route::get('/',[HomeController::class,'index']);
+//Route::get('/add_course/{id}', [CartController::class,'add_course']);
+ Route::get('/coursedetails/{id}',[HomeController::class,'detail']);
+Route::get('/courseclass/{course_id}/{id}',[HomeController::class,'classvideo']);
 //Route::get('/dashboard', function () {
  //  return view('dashboard');
 //})->middleware(['auth'])->name('dashboard');
