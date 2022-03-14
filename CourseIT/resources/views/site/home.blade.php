@@ -421,7 +421,7 @@
     </section>
     <!--Our Gallery Wrap End-->
     <!--UpComming Event Wrap Start-->
-    <section class="iq_upcomming_bg">
+    {{-- <section class="iq_upcomming_bg">
         <div class="container">
             <!--Heading Wrap Start-->
             <div class="iq_heading_1 text-center">
@@ -547,10 +547,10 @@
             </div>
             <!--Upcomming List Wrap End-->
         </div>
-    </section>
+    </section> --}}
     <!--UpComming Event Wrap End-->
     <!--Number Counter Wrap Start-->
-    <section class="iq_number_count_bg">
+    {{-- <section class="iq_number_count_bg">
         <div class="container">
             <div class="row">
                 <!--Number Counter Start-->
@@ -599,7 +599,7 @@
                 <!--Number Counter End-->
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--Number Counter Wrap End-->
     <!--Our Teacher Wrap Start-->
     <section>
@@ -614,15 +614,16 @@
             <!--Teacher Wrap List Start-->
             <div class="row">
                 <!--Teacher Thumb Start-->
+                @foreach ($instructors as $item)
                 <div class="col-md-4 col-sm-6">
                     <div class="iq_teacher_style_1">
                         <figure>
-                            <img src="/site/extra-images/teacher-01.jpg" alt="Image Here">
+                            <img src="{{ asset("storage/$item->image") }}" alt="Image Here">
                         </figure>
                         <div class="text">
-                            <h4><a href="#">Anna Doe</a></h4>
+                            <h4><a href="#">{{$item->name}}</a></h4>
                             <h6>Language Instructor</h6>
-                            <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudinris.</p>
+                            <p>English</p>
                             <ul class="iq_footer_social">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -632,9 +633,11 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
+                
                 <!--Teacher Thumb End-->
                 <!--Teacher Thumb Start-->
-                <div class="col-md-4 col-sm-6">
+               {{--  <div class="col-md-4 col-sm-6">
                     <div class="iq_teacher_style_1">
                         <div class="text">
                             <h4><a href="#">John Doe</a></h4>
@@ -671,7 +674,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!--Teacher Thumb End-->
             </div>
             <!--Teacher Wrap List End-->

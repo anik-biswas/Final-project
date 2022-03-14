@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Interfaces\ICourseRepository;
+use App\Interfaces\ICategoryRepository;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Course;
 
@@ -11,10 +12,12 @@ class CourseRepository extends BaseRepository implements ICourseRepository
 {
     protected $model;
     protected $courseModel;
+  
 
     public function __construct(Course $model)
     {
         $this->courseModel=$model;
+        
         parent::__construct($model);
     }
 
@@ -102,11 +105,16 @@ class CourseRepository extends BaseRepository implements ICourseRepository
         $data= $this->courseModel->where('discount_price','!=',0)->take(3)->orderBy('discount_price','desc')->get();
         return $data;
     }
+     public function GetCourseList($id)
+     {
+                
+        $data = $this->courseModel->where('category_id','=','id')->take(3)->get();
+        return $data;
+
+     }
      public function FindCourse($id)
      {
-        $course = $this->myFind($id);
-        return $course;
-
+         
      }
 
 }

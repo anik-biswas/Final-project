@@ -3,11 +3,11 @@
 
 <div class="iner_banner course-single">
     <div class="container">
-        <h5>course class</h5>
+        <h5>course detail</h5>
         <div class="banner_iner_capstion">
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">course class</a></li>
+                <li><a href="#">course detail</a></li>
             </ul>
         </div>
     </div>
@@ -63,10 +63,7 @@
                         <div class="about_courses_thumb">
                             <div class="lessons-slider">
                                 <div>
-                                    <video width="600px"  controls> 
-                                        <source src="{{ asset("storage/$course_class->course_video") }}" type="video/mp4"> 
-                                          
-                                     </video>
+                                    <img src="{{ asset("storage/$course->course_image") }}"width="100%" height="450px"alt=""/>
                                 </div>
                                 
                             </div>
@@ -184,7 +181,7 @@
                                 <div class="tab-pane" id="classlist">
                                     <div class="curriculum-table iqoniq-table">
                                         <ul class="table-row table-header">
-                                            <li><div>Serial No.</div></li>
+                                            <li><div>Serial No</div></li>
                                             <li class="course-name"><div>Class Name</div></li>
                                             
                                         </ul>
@@ -538,51 +535,43 @@
                         <!--course_inrp_side_description START-->
                         <div class="widget course-description">
                             <!--Widget Title Start-->
-                            <h5 class="widget-title"><span>university</span> DESCRIPTION</h5>
+                            <h5 class="widget-title"><span>Chackout</span>Form</h5>
                             <!--Widget Title End-->
-                            <p>{{$course->description}}</p>
+                            {{-- <p><input type="radio" id="payM1" name="payment">
+                                <label>Direct Bank Transfer</label></p> --}}
                             <ul class="course-lesson-list">
                                 <li>
                                     <a href="#">
-                                        <span class="icon-level-up-arrow"></span>
-                                    Level</a>
-                                    {{ App\Enums\CourseType::getDescription($course->course_type_id) }}
+                                        <span class="icon-signs">
+                                           
+                                        </span>
+                                        <input type="radio" id="payM1" name="payment"></a>
+                                       <label>Direct Bank Transfer</label> 
                                 </li>
                                 <li>
                                     <a href="#">
                                         <span class="icon-signs">
                                            
                                         </span>
-                                    Length</a>
-                                   {{$course->Course_length}} Classes
+                                        <input type="radio" id="payM1" name="payment"></a>
+                                       <label>Paypal</label> 
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="icon-translate">
-                                          
+                                        <span class="icon-signs">
+                                           
                                         </span>
-                                    Language</a>
-                                    English
+                                        <input type="radio" id="payM1" name="payment"></a>
+                                       <label>Check Payment</label> 
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="icon-home">
-                                          
-                                        </span>
-                                    Institution</a>
-                                    CourseIT
-                                </li>
+                                
                             </ul>
                         </div>
                         <!--course_inrp_side_description end-->
                         <!--coures_instractor_area START-->
                         <div class="widget coures_instractor_area">
                             <div class="instractor_heading">
-                                @if (!Auth::user())
-                                <h5><a href="{{ url("/login")}}">Enroll This Course</a></h5>
-                                @else
-                                <h5><a href="{{ url("/course/$course->id")}}">Enroll This Course</a></h5>
-                                @endif
+                                <h5><a href="#">Chackout</a></h5>
                             </div>
                             <h5><a href="#">INSTRUCTORS</a></h5>
                             @foreach($instructors as $key)

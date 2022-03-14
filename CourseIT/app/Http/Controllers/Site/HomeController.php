@@ -32,6 +32,7 @@ class HomeController extends Controller
     {
         $data["main_category"] = MainCategory::asSelectArray();
         $data["categories"]= $this->categoryRepo->myGet();
+        $data["instructors"]=$this->instructorRepo->myGet();
         $data['latest_courses']=$this->courseRepo->GetLatestCourseList();
         
         $data['special_courses']=$this->courseRepo->GetSpecialCourseList();
@@ -60,5 +61,26 @@ class HomeController extends Controller
         $data["class_list"]= $this->courseclassRepo->myGet();
         $data['special_courses']=$this->courseRepo->GetSpecialCourseList();
         return view('site.courseclass.detail',$data);
+    }
+    public function checkout($id)
+    {
+       
+        
+        $data['course']=$this->courseRepo->myFind($id);
+        $data["categories"]= $this->categoryRepo->myGet();
+        $data["instructors"]= $this->instructorRepo->myGet();
+        $data["course_type"] = CourseType::asSelectArray();
+        $data["class_list"]= $this->courseclassRepo->myGet();
+        $data['special_courses']=$this->courseRepo->GetSpecialCourseList();
+        return view('site.course.checkout',$data);
+    }
+    public function cacourse($id)
+    {
+        $data["main_category"] = MainCategory::asSelectArray();
+        $data["categories"]= $this->categoryRepo->myGet();
+        $data['latest_courses']=$this->courseRepo->GetLatestCourseList();
+        $data["courses"]=$this->courseRepo->GetCourseList($id);
+        $data['special_courses']=$this->courseRepo->GetSpecialCourseList();
+        return view('site.categorycourse.courselist',$data);
     }
 }

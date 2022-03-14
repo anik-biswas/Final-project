@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class,'index']);
 //Route::get('/add_course/{id}', [CartController::class,'add_course']);
- Route::get('/coursedetails/{id}',[HomeController::class,'detail']);
+Route::get('/coursedetails/{id}',[HomeController::class,'detail']);
+Route::get('/categorycourse/{id}',[HomeController::class,'cacourse']);
+Route::get('/course/{id}',[HomeController::class,'checkout']);
 Route::get('/courseclass/{course_id}/{id}',[HomeController::class,'classvideo']);
 //Route::get('/dashboard', function () {
  //  return view('dashboard');

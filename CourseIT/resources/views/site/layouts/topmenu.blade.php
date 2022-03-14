@@ -31,7 +31,7 @@
                             <ul class="children">
                                 @foreach ($categories as $item)
                                 @if ($item->main_category_id===0)
-                                <li><a href="#">{{$item->name}}</a></li>
+                                <li><a href="{{ url("/categorycourse/$item->id")}}">{{$item->name}}</a></li>
                                 @endif
                                 
                                 @endforeach
@@ -44,7 +44,7 @@
                             <ul class="children">
                                 @foreach ($categories as $item)
                                 @if ($item->main_category_id===1)
-                                <li><a href="#">{{$item->name}}</a></li>
+                                <li><a href="{{ url("/categorycourse/$item->id")}}">{{$item->name}}</a></li>
                                 @endif
                                 
                                 @endforeach
@@ -54,7 +54,7 @@
                             <ul class="children">
                                 @foreach ($categories as $item)
                                 @if ($item->main_category_id===2)
-                                <li><a href="#">{{$item->name}}</a></li>
+                                <li><a href="{{ url("/categorycourse/$item->id")}}">{{$item->name}}</a></li>
                                 @endif
                                 
                                 @endforeach

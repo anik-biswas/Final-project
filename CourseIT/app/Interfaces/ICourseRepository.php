@@ -9,5 +9,6 @@ interface ICourseRepository extends IBaseRepository
     public function DeleteCourse($id);
     public function GetLatestCourseList();
     public function GetSpecialCourseList();
+    public function GetCourseList($id);
     //public function GetRandomCourseList();
 }

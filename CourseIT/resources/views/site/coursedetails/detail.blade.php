@@ -63,7 +63,7 @@
                         <div class="about_courses_thumb">
                             <div class="lessons-slider">
                                 <div>
-                                    <img src="{{ asset("storage/$course->course_image") }}" alt=""/>
+                                    <img src="{{ asset("storage/$course->course_image") }}"width="100%" height="450px"alt=""/>
                                 </div>
                                 
                             </div>
@@ -189,7 +189,12 @@
                                         @if($key->course_id==$course->id)
                                          <ul class="table-row">
                                             <li><div>{{$key->class_no}}</div></li>
+                                            @if (!Auth::user())
+                                            <li class="course-name"><a href="{{ url("/login")}}">{{$key->name}}</a></li>
+                                            @else
                                             <li class="course-name"><a href="{{ url("/courseclass/$course->id/$key->id")}}">{{$key->name}}</a></li>
+                                            @endif
+                                           
                                             
                                         </ul>
                                         @endif
@@ -535,7 +540,7 @@
                         <!--course_inrp_side_description START-->
                         <div class="widget course-description">
                             <!--Widget Title Start-->
-                            <h5 class="widget-title"><span>university</span> DESCRIPTION</h5>
+                            <h5 class="widget-title"><span>Enroll</span> </h5>
                             <!--Widget Title End-->
                             <p>{{$course->description}}</p>
                             <ul class="course-lesson-list">
@@ -575,7 +580,12 @@
                         <!--coures_instractor_area START-->
                         <div class="widget coures_instractor_area">
                             <div class="instractor_heading">
-                                <h5><a href="#">Enroll This Course</a></h5>
+                                @if (!Auth::user())
+                                <h5><a href="{{ url("/login")}}">Enroll This Course</a></h5>
+                                @else
+                                <h5><a href="{{ url("/course/$course->id")}}">Enroll This Course</a></h5>
+                                @endif
+                                
                             </div>
                             <h5><a href="#">INSTRUCTORS</a></h5>
                             @foreach($instructors as $key)
