@@ -30,7 +30,7 @@ class CourseClassController extends Controller
     {
       
         $data["course_class_list"]=$this->course_classRepo->myGet();
-        return view('admin.courseclasses.index',$data);
+        return view('admin.courseclasses.index',$data)->with('i', 1);;
     }
 
     /**

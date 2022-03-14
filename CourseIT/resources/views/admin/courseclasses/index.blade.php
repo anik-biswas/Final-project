@@ -32,17 +32,21 @@
         </div>
       </div>
       <div class="card-body">
-        <table class="table table-bordered">
-          <tr>
-              <td>Course Name</td>
-              <td>Class No.</td>
-              <td>Class Name</td>
-              <td>Course Video</td>
-              <td>Action</td>
+        <table class="table table-bordered" id="myTable">
+          <thead>
+            <tr>
+              <th>Serial</th>
+              <th>Course Name</th>
+              <th>Class No.</th>
+              <th>Class Name</th>
+              <th>Course Video</th>
+              <th>Action</th>
           </tr>
+          </thead>
+         
           @foreach ($course_class_list as $item)
         <tr>
-            
+            <td>{{$i++}}</td>
             <td>{{ $item->courses? $item->courses->name : "" }}</td>
             <td>{{ $item->class_no }}</td>
             <td>{{ $item->name }}</td>
@@ -76,3 +80,14 @@
     </div>
     <!-- /.card -->
 @endsection
+@push('stylecss')
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+@endpush
+@push('scripts')
+    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready( function () {
+    $('#myTable').DataTable();
+     } );
+    </script>
+@endpush

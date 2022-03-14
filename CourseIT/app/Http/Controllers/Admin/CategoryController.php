@@ -6,6 +6,7 @@ use App\Enums\MainCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Interfaces\ICategoryRepository;
+use Yajra\DataTables\DataTables;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -29,8 +30,14 @@ class CategoryController extends Controller
         $data["category_list"] = $this->categoryRepo->myGet();
         //$data["category_list"] = $this->categoryRepo->myGet();
         
-        return view('admin.categories.index', $data);
+        return view('admin.categories.index', $data)->with('i', 1);;
+      // return view('admin.categories.index');
+
     }
+    /* public function list()
+    {
+        return DataTables::of(Category::query())->make(true);
+    } */
 
     /**
      * Show the form for creating a new resource.

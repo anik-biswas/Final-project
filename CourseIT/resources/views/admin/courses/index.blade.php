@@ -3,7 +3,7 @@
 @section('page_title')
 <div class="row mb-2">
   <div class="col-sm-6">
-    <h1>Instructor</h1>
+    <h1>Course</h1>
   </div>
   <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
@@ -22,9 +22,9 @@
         <h3 class="card-title">Courses List</h3>
         
         <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+          {{-- <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
             <i class="fas fa-minus"></i>
-          </button>
+          </button> --}}
           {{-- <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
             <i class="fas fa-times"></i>
           </button> --}}
@@ -32,21 +32,25 @@
         </div>
       </div>
       <div class="card-body">
-        <table class="table table-bordered">
-          <tr>
-            <td>Name</td>
-            <td>Category</td>
-            <td>Instructor</td>
-            <td>Course Type</td>
-            <td>Course Length</td>
-            <td>Price</td>
-            <td>Discount Price</td>
-            <td>Description</td>
-            <td>Image</td>
-            <td>Action</td>
-        </tr>
+        <table class="table table-bordered" id="myTable">
+          <thead>
+            <tr>
+              <th>Serial</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Instructor</th>
+            <th>Course Type</th>
+            <th>Course Length</th>
+            <th>Price</th>
+            <th>Discount Price</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Action</th>
+            </tr>
+        </thead>
          @foreach ($course_list as $item)
         <tr>
+          <td>{{$i++}}</td>
             <td>{{ $item->name }}</td>
             <td>{{ $item->category ? $item->category->name : "" }}</td>
             <td>{{ $item->instructor ? $item->instructor->name : "" }}</td>
@@ -81,3 +85,14 @@
     </div>
     <!-- /.card -->
 @endsection
+@push('stylecss')
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+@endpush
+@push('scripts')
+    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready( function () {
+    $('#myTable').DataTable();
+     } );
+    </script>
+@endpush

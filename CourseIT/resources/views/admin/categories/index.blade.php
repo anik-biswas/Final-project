@@ -32,13 +32,22 @@
         </div>
       </div>
       <div class="card-body">
-        <table class="table table-bordered">
-          <tr>
-              <td>Name</td>
-              <td>Main Category</td>
+        <table class="table table-bordered" id="myTable">
+          <thead>
+            <tr>
+              <th>Serial</th>
+              <th>Name</th>
+              <th>Main Category</th>
+              <th>Action</th>
           </tr>
-          @foreach ($category_list as $item)
+          </thead>
+          
+           @foreach ($category_list as $item)
+          
+            
+          
           <tr>
+              <td>{{$i++}}</td>
               <td>{{ $item->name }}</td>
               <td>{{ App\Enums\MainCategory::getDescription($item->main_category_id) }}</td>
               
@@ -54,15 +63,30 @@
                   </form>
 
               </td>
+
           </tr>
-          @endforeach
+          
+              
+           
+          @endforeach 
       </table>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">
-        Footer
+       
       </div>
       <!-- /.card-footer-->
     </div>
     <!-- /.card -->
 @endsection
+@push('stylecss')
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+@endpush
+@push('scripts')
+    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready( function () {
+    $('#myTable').DataTable();
+     } );
+    </script>
+@endpush

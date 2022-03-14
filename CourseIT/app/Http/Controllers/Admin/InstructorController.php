@@ -26,7 +26,7 @@ class InstructorController extends Controller
     public function index()
     {
         $data["instructor_list"] = $this->instructorRepo->myGet();
-        return view('admin.instructors.index',$data);
+        return view('admin.instructors.index',$data)->with('i', 1);;
     }
 
     /**

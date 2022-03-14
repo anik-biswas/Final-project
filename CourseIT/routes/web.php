@@ -35,6 +35,7 @@ Route::get('/courseclass/{course_id}/{id}',[HomeController::class,'classvideo'])
 Route::prefix('admin')->middleware(['auth',onlyAdmin::class])->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index']);
     Route::resource('/categories',CategoryController::class);
+    //Route::resource('/categories/list',[CategoryController::class,'list']);
     Route::resource('/instructors',InstructorController::class);
     Route::resource('/courses',CourseController::class);
     Route::resource('/courseclasses',CourseClassController::class);
