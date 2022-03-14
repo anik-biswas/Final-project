@@ -188,7 +188,7 @@
                                         @foreach($class_list as $key)
                                         @if($key->course_id==$course->id)
                                          <ul class="table-row">
-                                            <li><div>{{$key->class_no}}</div></li>
+                                            <li><div>{{$i++}}</div></li>
                                             @if (!Auth::user())
                                             <li class="course-name"><a href="{{ url("/login")}}">{{$key->name}}</a></li>
                                             @else

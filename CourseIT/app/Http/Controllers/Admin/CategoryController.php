@@ -30,7 +30,7 @@ class CategoryController extends Controller
         $data["category_list"] = $this->categoryRepo->myGet();
         //$data["category_list"] = $this->categoryRepo->myGet();
         
-        return view('admin.categories.index', $data)->with('i', 1);;
+        return view('admin.categories.index', $data)->with('i', 1);
       // return view('admin.categories.index');
 
     }

@@ -48,7 +48,7 @@ class HomeController extends Controller
         $data["course_type"] = CourseType::asSelectArray();
         $data["class_list"]= $this->courseclassRepo->myGet();
         $data['special_courses']=$this->courseRepo->GetSpecialCourseList();
-     return view('site.coursedetails.detail',$data);
+     return view('site.coursedetails.detail',$data)->with('i', 1);
         
     }
     public function classvideo($course_id,$id)
@@ -60,7 +60,7 @@ class HomeController extends Controller
         $data["course_type"] = CourseType::asSelectArray();
         $data["class_list"]= $this->courseclassRepo->myGet();
         $data['special_courses']=$this->courseRepo->GetSpecialCourseList();
-        return view('site.courseclass.detail',$data);
+        return view('site.courseclass.detail',$data)->with('i', 1);
     }
     public function checkout($id)
     {
@@ -72,7 +72,7 @@ class HomeController extends Controller
         $data["course_type"] = CourseType::asSelectArray();
         $data["class_list"]= $this->courseclassRepo->myGet();
         $data['special_courses']=$this->courseRepo->GetSpecialCourseList();
-        return view('site.course.checkout',$data);
+        return view('site.course.checkout',$data)->with('i', 1);
     }
     public function cacourse($id)
     {
